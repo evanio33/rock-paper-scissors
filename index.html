@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const comPlay = () => {
+            let pc = Math.floor(Math.random() *3) +1;
+            switch(pc) {
+                case 1: 
+                    pc = 'rock';
+                    break;
+                case 2:
+                    pc = 'paper';
+                    break;
+                case 3:
+                    pc = 'scissors';
+                    break;
+            }
+            return pc;
+        };
+        const userPlay = () => prompt("select rock, paper, or scissors").toLowerCase();
+        const playRound = (user, pc) => {
+            let outcome = 0;
+            switch(user) {
+                case 'rock':
+                    if(pc === 'scissors') {
+                        outcome=1;
+                        break;
+                    }else if(pc === 'paper') {
+                        outcome= -1;
+                        break;
+                    }
+                case 'paper': 
+                    if(pc=== 'rock') {
+                        outcome=1;
+                        break;
+                    }else if(pc==='scissors') {
+                        outcome=-1;
+                        break;
+                    }
+                case 'scissors':
+                    if(pc==='paper') {
+                        outcome=1;
+                        break;
+                    }else if(pc=== 'rock') {
+                        outcome =-1;
+                        break;
+                    }
+                
+            }
+            console.log("you chose " + user + ", PC chose " +pc + ".");
+
+            if(pc=== user) {
+                outcome = 0;
+                console.log("outcome = " + outcome +" It's a tie!");
+            }
+
+            switch(outcome) {
+                case 1:
+                    console.log("outcome = " + outcome +" You win!");
+                    break;
+                case -1: 
+                    console.log("outcome = " + outcome +" You lose!");
+                    break;
+            }
+            return outcome;
+        };
+        const game = () => {
+            let userScore = 0;
+            let pcScore = 0;
+            for(let i =0; i<5; i++) {
+                let score = playRound(userPlay(), comPlay());
+                if(score == 1) userScore++;
+                if(score == -1) pcScore++;
+            }
+            //if(userScore===pcScore) console.log("the game is a draw");
+            if(userScore > pcScore) console.log("you win the game!");
+                else if(userScore < pcScore) console.log("you lose the game!");
+                else if(userScore === pcScore) console.log("the game is a draw.");
+            return 0;
+        };
+    </script>
+</body>
+</html>
