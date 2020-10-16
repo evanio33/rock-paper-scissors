@@ -17,6 +17,16 @@ const comPlay = () => {
     return pc;
 };
 
+const gameOver = (string) => {
+    alert(`You ${string}! score: ` + win);
+            win = 0;
+            tie = 0;
+            loss = 0;
+            winP.textContent = `wins: ${win}`;
+            loseP.textContent = `losses: ${loss}`;
+            tieP.textContent = `ties: ${tie}`;
+};
+
 const playRound = (user, pc) => {
     let outcome = 0;
     switch(user) {
@@ -53,6 +63,9 @@ const playRound = (user, pc) => {
         console.log("outcome = " + outcome +" It's a tie!");
         tie++
         tieP.textContent = `ties: ${tie}`;
+        if(tie == 5){
+            gameOver('tied');
+        }
        
     }
 
@@ -62,22 +75,16 @@ const playRound = (user, pc) => {
             win++
             winP.textContent = `wins: ${win}`;
             if(win == 5){
-                if(win > loss)  alert("you win! score: " + win);
-                  else if(loss > win)  alert("you lose! score: " + win);
-                    else if(win === loss)  alert("It's a Tie! score: " +win);
-                win = 0;
-                tie = 0;
-                loss = 0;
-                winP.textContent = `wins: ${win}`;
-                loseP.textContent = `losses: ${loss}`;
-                tieP.textContent = `ties: ${tie}`;
-
+                gameOver('win');
             }
             break;
         case -1: 
             console.log("outcome = " + outcome +" You lose!");
             loss++;
             loseP.textContent = `Losses: ${loss}`;
+            if(loss == 5){
+                gameOver('lose');
+            }
             break;
     }
     return outcome;
