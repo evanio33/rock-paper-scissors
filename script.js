@@ -87,6 +87,8 @@ const playRound = (user, pc) => {
 
 //DOM script. makes buttons and general interface of html page
 const container = document.querySelector('#container');
+
+const btnDiv = document.createElement('div');
  
 const rockbtn = document.createElement('button');
   rockbtn.textContent = "Rock";
@@ -108,20 +110,32 @@ const scissorsbtn = document.createElement('button');
 
 const scoresDiv = document.createElement('div');
 
-const winP = document.createElement('p');
+const winP = document.createElement('span');
   winP.textContent = `wins: ${win}`;
-const loseP = document.createElement('p');
+const loseP = document.createElement('span');
   loseP.textContent = `losses: ${loss}`;
-const tieP = document.createElement('p');
+const tieP = document.createElement('span');
   tieP.textContent = `ties: ${tie}`;
 
 
 
-container.appendChild(rockbtn);
-container.appendChild(paperbtn);
-container.appendChild(scissorsbtn);
+container.appendChild(btnDiv);
+btnDiv.appendChild(rockbtn);
+btnDiv.appendChild(paperbtn);
+btnDiv.appendChild(scissorsbtn);
 
 container.appendChild(scoresDiv);
 scoresDiv.appendChild(winP);
 scoresDiv.appendChild(loseP);
 scoresDiv.appendChild(tieP);
+
+btnDiv.classList.add("gameDiv");
+scoresDiv.classList.add("scoresDiv");
+
+rockbtn.classList.add("gameBtn");
+paperbtn.classList.add("gameBtn");
+scissorsbtn.classList.add("gameBtn");
+
+winP.classList.add("score");
+loseP.classList.add("score");
+tieP.classList.add("score");
